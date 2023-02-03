@@ -26,6 +26,7 @@ public class Game {
         while (true) {
             Thread.sleep(delay);
             Field.clearTail(snake);
+            //Field.clearHead(snake);
             moveSnake();
             checkCollisions();
             Field.drawSnake(snake);

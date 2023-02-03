@@ -67,6 +67,10 @@ public final class Field {
         Position tail = snake.getTail();
         screen.putString(tail.getCol(), tail.getRow(), " ", null, null);
     }
+    public static void clearHead(Snake snake) {
+        Position head = snake.getHead();
+        screen.putString(head.getCol(), head.getRow(), " ", null, null);
+    }
 
     private static void drawWalls() {
         for (int i = 0; i < width; i++) {

@@ -29,11 +29,18 @@ public class Snake {
 
     public void move(Direction direction) {
         idleDirection = direction;
-        switch (direction) {
+       /* switch (direction) {
             case UP -> {getHead().setRow(-1); Field.clearTail(this); System.out.println(getHead().getRow() + " " +  getHead().getCol());}
             case DOWN -> {getHead().setRow(1); Field.clearTail(this); System.out.println(getHead().getRow() + " " + getHead().getCol());}
             case RIGHT -> {getHead().setCol(1); Field.clearTail(this); System.out.println(getHead().getRow() + " " + getHead().getCol());}
             case LEFT -> {getHead().setCol(-1); Field.clearTail(this); System.out.println(getHead().getRow() + " " + getHead().getCol());}
+        }*/
+        switch (direction) {
+            case UP -> {fullSnake.get(0).setRow(-1);}
+            case DOWN -> {getFullSnake().get(0).setRow(1);}
+            case RIGHT -> {getFullSnake().get(0).setCol(1);}
+            case LEFT -> {getFullSnake().get(0).setCol(-1);}
+
         }
     }
 
@@ -61,6 +68,7 @@ public class Snake {
     public Position getTail() {
         return fullSnake.getLast();
     }
+    public void setTails() {}
 
     public LinkedList<Position> getFullSnake(){
         return fullSnake;
