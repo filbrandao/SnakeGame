@@ -15,27 +15,30 @@ public class Snake {
 
     LinkedList<Position> fullSnake = new LinkedList<>();
     private final static int SNAKE_INITIAL_SIZE = 6;
-    private Direction direction;
+    private Direction idleDirection;
     private boolean alive = true;
     public void increaseSize() {
 
     }
     public Snake(){
-       //direction = Direction.UP;
-       getFullSnake();
+        idleDirection = Direction.LEFT;
+        for(int i = 0; i < SNAKE_INITIAL_SIZE; i++){
+            fullSnake.add( i, new Position(y, x+i));
+        }
     }
 
     public void move(Direction direction) {
+        idleDirection = direction;
         switch (direction) {
-            case UP -> {getHead().setRow(-1); Field.clearTail(this);}
-            case DOWN -> {getHead().setRow(1); Field.clearTail(this);}
-            case RIGHT -> {getHead().setCol(1); Field.clearTail(this);}
-            case LEFT -> {getHead().setCol(-1); Field.clearTail(this);}
+            case UP -> {getHead().setRow(-1); Field.clearTail(this); System.out.println(getHead().getRow() + " " +  getHead().getCol());}
+            case DOWN -> {getHead().setRow(1); Field.clearTail(this); System.out.println(getHead().getRow() + " " + getHead().getCol());}
+            case RIGHT -> {getHead().setCol(1); Field.clearTail(this); System.out.println(getHead().getRow() + " " + getHead().getCol());}
+            case LEFT -> {getHead().setCol(-1); Field.clearTail(this); System.out.println(getHead().getRow() + " " + getHead().getCol());}
         }
     }
 
     public void move(){
-        move(direction);
+        move(idleDirection);
     }
 
     public void die() {
@@ -60,14 +63,6 @@ public class Snake {
     }
 
     public LinkedList<Position> getFullSnake(){
-        for(int i = 0; i < SNAKE_INITIAL_SIZE; i++){
-           fullSnake.add( i, new Position(y, x+i));
-
-        }
-
-         /*Position initialPosition = new Position();
-        int [] position = {initialPosition.getCol(), initialPosition.getRow()};*/
-
         return fullSnake;
     }
 

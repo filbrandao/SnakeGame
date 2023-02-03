@@ -11,11 +11,11 @@ public class Position {
     }
 
     public int getCol() {
-        return x;
+        return this.x;
     }
 
     public int getRow() {
-        return y;
+        return this.y;
     }
 
     public void setRow(int y) {
