@@ -1,5 +1,6 @@
 package academy.mindswap.gameobjects.snake;
 
+import academy.mindswap.field.Field;
 import academy.mindswap.field.Position;
 
 import java.sql.SQLOutput;
@@ -13,22 +14,24 @@ public class Snake {
     private int y;
 
     LinkedList<Position> fullSnake = new LinkedList<>();
-    private final static int SNAKE_INITIAL_SIZE = 3;
+    private final static int SNAKE_INITIAL_SIZE = 6;
     private Direction direction;
     private boolean alive = true;
     public void increaseSize() {
 
     }
-
     public Snake(){
-        this.y = 12;
-        this.x = 50;
-        getFullSnake();
-
+       //direction = Direction.UP;
+       getFullSnake();
     }
 
     public void move(Direction direction) {
-
+        switch (direction) {
+            case UP -> {getHead().setRow(-1); Field.clearTail(this);}
+            case DOWN -> {getHead().setRow(1); Field.clearTail(this);}
+            case RIGHT -> {getHead().setCol(1); Field.clearTail(this);}
+            case LEFT -> {getHead().setCol(-1); Field.clearTail(this);}
+        }
     }
 
     public void move(){
@@ -48,8 +51,11 @@ public class Snake {
         return fullSnake.getFirst();
     }
 
-    public Position getTail() {
+    public void setHead() {
 
+    }
+
+    public Position getTail() {
         return fullSnake.getLast();
     }
 

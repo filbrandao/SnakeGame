@@ -14,6 +14,7 @@ public final class Field {
     private static final String SNAKE_BODY_STRING = "#";
     private static final String SNAKE_HEAD_STRING = "0";
     private static final String FRUIT_STRING = "@";
+    private static final String SNAKE_TAIL_STRING = ">";
 
     private static int width;
     private static int height;
@@ -49,9 +50,11 @@ public final class Field {
         }
 
         Position head = snake.getHead();
-
+        Position tail = snake.getTail();
         for (Position p : snake.getFullSnake()) {
-            if (!p.equals(head)) {
+            if (p.equals(tail)) {
+                screen.putString(p.getCol(), p.getRow(), SNAKE_TAIL_STRING, snakeColor, null);
+            } else if (!p.equals(head)){
                 screen.putString(p.getCol(), p.getRow(), SNAKE_BODY_STRING, snakeColor, null);
             } else {
                 screen.putString(p.getCol(), p.getRow(), SNAKE_HEAD_STRING, snakeColor, null);

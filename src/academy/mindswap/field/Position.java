@@ -3,11 +3,11 @@ package academy.mindswap.field;
 import java.util.Objects;
 
 public class Position {
-    private int y;
-    private int x;
+    private int y = 12;
+    private int x = 50;
     public Position(int y, int x){
-        this.y = y;
-        this.x = x;
+        this.y += y;
+        this.x += x;
     }
 
     public int getCol() {
@@ -16,6 +16,14 @@ public class Position {
 
     public int getRow() {
         return y;
+    }
+
+    public void setRow(int y) {
+        this.y += y;
+    }
+
+    public void setCol(int x) {
+        this.x += x;
     }
 
     @Override

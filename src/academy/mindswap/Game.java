@@ -59,7 +59,7 @@ public class Game {
                     return;
             }
         }
-        snake.move();
+        //snake.move();
     }
 
     private void checkCollisions() {
