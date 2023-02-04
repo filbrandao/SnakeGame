@@ -3,8 +3,8 @@ package academy.mindswap.field;
 import java.util.Objects;
 
 public class Position {
-    private int y = 12;
-    private int x = 50;
+    private int y;
+    private int x;
     public Position(int y, int x){
         this.y += y;
         this.x += x;
