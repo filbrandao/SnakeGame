@@ -23,12 +23,7 @@ public class Snake {
         this.iterator = fullSnake.iterator();
     }
     public void increaseSize() {
-        switch (idleDirection){
-            case UP -> getFullSnake().add(getSnakeSize(), new Position(getFullSnake().getLast().getRow(), getFullSnake().getLast().getCol()-1));
-            case DOWN -> getFullSnake().add(getSnakeSize(), new Position(getFullSnake().getLast().getRow(), getFullSnake().getLast().getCol()+1));
-            case LEFT -> getFullSnake().add(getSnakeSize(), new Position(getFullSnake().getLast().getRow()+1, getFullSnake().getLast().getCol()));
-            case RIGHT -> getFullSnake().add(getSnakeSize(), new Position(getFullSnake().getLast().getRow()-1, getFullSnake().getLast().getCol()));
-        }
+        getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol()));
         System.out.println(getSnakeSize());
     }
 
