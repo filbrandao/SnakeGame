@@ -1,16 +1,13 @@
 package academy.mindswap.gameobjects.snake;
 
 import academy.mindswap.field.Position;
-
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Snake {
     private final static int SNAKE_INITIAL_SIZE = 6;
-    private  Iterator iterator;
     private Direction idleDirection;
     private boolean alive = true;
-    private LinkedList<Position> fullSnake = new LinkedList<>();
+    private final LinkedList<Position> fullSnake = new LinkedList<>();
 
     public Snake(){
 
@@ -20,7 +17,6 @@ public class Snake {
             int x = 50;
             fullSnake.add( i, new Position(y, x +i));
         }
-        this.iterator = fullSnake.iterator();
     }
     public void increaseSize() {
         getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol()));
@@ -56,12 +52,6 @@ public class Snake {
                 break;
         }
         if (!notGoingBack) {idleDirection = direction;}
-       /* switch (direction) {
-            case UP -> {getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol())); getFullSnake().pollLast();  getFullSnake().get(0).setRow(-1);}
-            case DOWN -> {getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol())); getFullSnake().pollLast(); getFullSnake().get(0).setRow(1);}
-            case RIGHT -> {getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol())); getFullSnake().pollLast(); getFullSnake().get(0).setCol(1);}
-            case LEFT -> {getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol())); getFullSnake().pollLast(); getFullSnake().get(0).setCol(-1);}
-        }*/
     }
 
     public void move(){
@@ -90,14 +80,6 @@ public class Snake {
 
     public int getSnakeSize() {
         return getFullSnake().size();
-    }
-
-    public Iterator getIterator() {
-        return iterator;
-    }
-
-    public void setIterator(Iterator iterator) {
-        this.iterator = iterator;
     }
 }
 

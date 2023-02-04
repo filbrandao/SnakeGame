@@ -13,9 +13,9 @@ import java.util.Random;
 
 public class Game {
 
-    private Snake snake;
+    private final Snake snake;
     private Fruit fruit;
-    private int delay;
+    private final int delay;
 
     public Game(int cols, int rows, int delay) {
         Field.init(cols, rows);
