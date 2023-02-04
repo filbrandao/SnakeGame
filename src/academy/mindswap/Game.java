@@ -7,6 +7,9 @@ import academy.mindswap.gameobjects.snake.Snake;
 import com.googlecode.lanterna.input.Key;
 import academy.mindswap.field.Position;
 
+import java.util.Iterator;
+import java.util.Random;
+
 
 public class Game {
 
@@ -22,32 +25,37 @@ public class Game {
 
     public void start() throws InterruptedException {
 
-         generateFruit(); // uncomment when it's time to introduce fruits
+         generateFruit();
 
-        while (true) {
+        while (snake.isAlive()) {
             Thread.sleep(delay);
             Field.clearTail(snake);
-            //Field.clearHead(snake);
             moveSnake();
             checkCollisions();
             Field.drawSnake(snake);
         }
+        gameOver();
+    }
+
+    private void gameOver() {
+        // TODO: 04/02/23  
     }
 
     private void generateFruit() {
         //RANDOM DE 1 ATÉ À WIDTH e HEIGHT DA FIELD
-        //int randomX = (int) (Math.random() * Field.getWidth()) + 1;
-        //int randomY = (int) (Math.random() * Field.getHeight()) + 1;
-        int randomX = 10;
-        int randomY = 10;
+        Random random = new Random();
+        int randomX = (int) (Math.random() * ((Field.getHeight() -2) - 2) + 1) + 2;
+        int randomY = (int) (Math.random() * ((Field.getWidth() -2) - 2) + 1) + 2;
+        //int randomX = 23;
+        //int randomY = 98;
 
         //TEM DE SER UMA POSIÇÃO DIFERENTE DE TODO O CORPO DA SNAKE
-       /* for (int i = 0; i < snake.getSnakeSize(); i++) {
+       for (int i = 0; i < snake.getSnakeSize(); i++) {
             if (randomX == snake.getFullSnake().get(i).getCol() && randomY == snake.getFullSnake().get(i).getRow()) {
                 generateFruit();
                 return;
             }
-        }*/
+        }
         fruit = new Fruit(new Position(randomX, randomY));
         Field.drawFruit(fruit);
     }
@@ -78,18 +86,18 @@ public class Game {
         snake.move();
     }
 
-    private void checkCollisions() {
+    private boolean checkCollisions() {
 
         //VERIFICA SE A HEAD DA SNAKE BATEU EM ALGUMA PAREDE
-       /* if(snake.getHead().getCol() == 0 || snake.getHead().getRow() == 0 || snake.getHead().getRow() == Field.getWidth() || snake.getHead().getCol() == Field.getHeight()){
-            snake.die();
-        }*/
+       if (snake.getHead().getCol() == 0) snake.die();
+       if (snake.getHead().getRow() == 0) snake.die();
+       if (snake.getHead().getRow() == Field.getHeight()) snake.die();
+       if (snake.getHead().getCol() == Field.getWidth()) snake.die();
 
         //VERIFICA SE A HEAD DA SNAKE TEM A MESMA POSIÇÃO DA FRUTA
         if(snake.getHead().equals(fruit.getPosition())){
             snake.increaseSize();
             generateFruit();
-
         }
 
         /*for (Object position: snake.getFullSnake()){
@@ -100,14 +108,16 @@ public class Game {
         }*/
 
         //VERIFICA SE A SNAKE BATEU NELA PRÓPRIA
-        int index = 0;
-        //while(snake.getIterator().hasNext()){
-          //  if (index > 3 && snake.getHead().equals(snake.getIterator().next())) {
-           //     snake.die();
-             //   break;
-            //}
-            index++;
-        //}
+        for (int i = 3; i < snake.getSnakeSize(); i++) {
+            if (snake.getHead().equals(snake.getFullSnake().get(i))) {
+                snake.die();
+                break;
+            }
+        }
+
+        //System.out.println(Field.getWidth());
+        //System.out.println(Field.getHeight());
         //System.out.println(snake.getHead().getCol() + " " + snake.getHead().getRow() + " " + fruit.getPosition().getCol() + " " + fruit.getPosition().getRow());
+        return snake.isAlive();
     }
 }
