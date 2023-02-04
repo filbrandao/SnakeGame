@@ -5,6 +5,7 @@ import academy.mindswap.gameobjects.fruit.Fruit;
 import academy.mindswap.gameobjects.snake.Direction;
 import academy.mindswap.gameobjects.snake.Snake;
 import com.googlecode.lanterna.input.Key;
+import academy.mindswap.field.Position;
 
 
 public class Game {
@@ -21,7 +22,7 @@ public class Game {
 
     public void start() throws InterruptedException {
 
-        // generateFruit(); // uncomment when it's time to introduce fruits
+         generateFruit(); // uncomment when it's time to introduce fruits
 
         while (true) {
             Thread.sleep(delay);
@@ -45,7 +46,7 @@ public class Game {
                 return;
             }
         }
-        fruit = new Fruit(randomX, randomY);
+        fruit = new Fruit(new Position(randomX, randomY));
     }
 
     private void moveSnake() {
@@ -96,12 +97,12 @@ public class Game {
 
         //VERIFICA SE A SNAKE BATEU NELA PRÓPRIA
         int index = 0;
-        while(snake.getIterator().hasNext()){
-            if (index > 3 && snake.getHead().equals(snake.getIterator().next())) {
-                snake.die();
-                break;
-            }
+        //while(snake.getIterator().hasNext()){
+          //  if (index > 3 && snake.getHead().equals(snake.getIterator().next())) {
+           //     snake.die();
+             //   break;
+            //}
             index++;
-        }
+        //}
     }
 }

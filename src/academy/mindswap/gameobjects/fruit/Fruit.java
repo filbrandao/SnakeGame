@@ -4,15 +4,13 @@ import academy.mindswap.field.Position;
 
 public class Fruit {
 
-    private int x;
-    private int y;
+ private Position position;
 
-    public Fruit(int x, int y){
-        this.x = x;
-        this.y = y;
+    public Fruit(Position position){
+       this.position = position;
     }
 
     public Position getPosition() {
-        return null;
+        return this.position;
     }
 }

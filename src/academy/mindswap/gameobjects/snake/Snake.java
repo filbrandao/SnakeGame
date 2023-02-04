@@ -1,27 +1,24 @@
 package academy.mindswap.gameobjects.snake;
 
-import academy.mindswap.field.Field;
 import academy.mindswap.field.Position;
 
-import java.sql.SQLOutput;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
 
-public class Snake{
-
-    private int x = 12;
-    private int y = 50;
-    private LinkedList<Position> fullSnake = new LinkedList<>();
-    private Iterator iterator;
+public class Snake {
     private final static int SNAKE_INITIAL_SIZE = 6;
+    private  Iterator iterator;
     private Direction idleDirection;
     private boolean alive = true;
+    private LinkedList<Position> fullSnake = new LinkedList<>();
+
     public Snake(){
-        this.idleDirection = Direction.LEFT;
+
+        idleDirection = Direction.LEFT;
         for(int i = 0; i < SNAKE_INITIAL_SIZE; i++){
-            fullSnake.add(i, new Position(y, x+i));
+            int y = 12;
+            int x = 50;
+            fullSnake.add( i, new Position(y, x +i));
         }
         this.iterator = fullSnake.iterator();
     }
@@ -35,24 +32,44 @@ public class Snake{
     }
 
     public void move(Direction direction) {
-        idleDirection = direction;
-       /* switch (direction) {
-            case UP -> {getHead().setRow(-1); Field.clearTail(this); System.out.println(getHead().getRow() + " " +  getHead().getCol());}
-            case DOWN -> {getHead().setRow(1); Field.clearTail(this); System.out.println(getHead().getRow() + " " + getHead().getCol());}
-            case RIGHT -> {getHead().setCol(1); Field.clearTail(this); System.out.println(getHead().getRow() + " " + getHead().getCol());}
-            case LEFT -> {getHead().setCol(-1); Field.clearTail(this); System.out.println(getHead().getRow() + " " + getHead().getCol());}
-        }*/
+    boolean notGoingBack = false;
         switch (direction) {
-            case UP -> {fullSnake.get(0).setRow(-1);}
-            case DOWN -> {getFullSnake().get(0).setRow(1);}
-            case RIGHT -> {getFullSnake().get(0).setCol(1);}
-            case LEFT -> {getFullSnake().get(0).setCol(-1);}
-
+            case UP:
+                if (idleDirection == Direction.DOWN){notGoingBack = true; break;}
+                getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol()));
+                getFullSnake().pollLast();
+                getFullSnake().get(0).setRow(-1);
+                break;
+            case DOWN:
+                if (idleDirection == Direction.UP){notGoingBack = true; break;}
+                getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol()));
+                getFullSnake().pollLast();
+                getFullSnake().get(0).setRow(1);
+                break;
+            case RIGHT:
+                if (idleDirection == Direction.LEFT){notGoingBack = true; break;}
+                getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol()));
+                getFullSnake().pollLast();
+                getFullSnake().get(0).setCol(1);
+                break;
+            case LEFT:
+                if (idleDirection == Direction.RIGHT){notGoingBack = true; break;}
+                getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol()));
+                getFullSnake().pollLast();
+                getFullSnake().get(0).setCol(-1);
+                break;
         }
+        if (!notGoingBack) {idleDirection = direction;}
+       /* switch (direction) {
+            case UP -> {getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol())); getFullSnake().pollLast();  getFullSnake().get(0).setRow(-1);}
+            case DOWN -> {getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol())); getFullSnake().pollLast(); getFullSnake().get(0).setRow(1);}
+            case RIGHT -> {getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol())); getFullSnake().pollLast(); getFullSnake().get(0).setCol(1);}
+            case LEFT -> {getFullSnake().addFirst(new Position(getHead().getRow(), getHead().getCol())); getFullSnake().pollLast(); getFullSnake().get(0).setCol(-1);}
+        }*/
     }
 
     public void move(){
-        move(idleDirection);
+      move(idleDirection);
     }
 
     public void die() {
@@ -67,14 +84,9 @@ public class Snake{
         return this.getFullSnake().getFirst();
     }
 
-    public void setHead() {
-
-    }
-
     public Position getTail() {
         return fullSnake.getLast();
     }
-    public void setTail() {}
 
     public LinkedList<Position> getFullSnake(){
         return fullSnake;
