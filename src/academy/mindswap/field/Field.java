@@ -67,10 +67,6 @@ public final class Field {
         Position tail = snake.getTail();
         screen.putString(tail.getCol(), tail.getRow(), " ", null, null);
     }
-    public static void clearHead(Snake snake) {
-        Position head = snake.getHead();
-        screen.putString(head.getCol(), head.getRow(), " ", null, null);
-    }
 
     private static void drawWalls() {
         for (int i = 0; i < width; i++) {
@@ -103,5 +99,14 @@ public final class Field {
 
     public static void gameOver() {
 
+        for (int i = 0; i < width; i++) {
+            screen.putString(i, 13, FRUIT_STRING, Terminal.Color.RED, null);
+
+        }
+
+        for (int j = 0; j < height; j++) {
+            screen.putString(50, j, FRUIT_STRING, Terminal.Color.RED, null);
+        }
+        screen.refresh();
     }
 }

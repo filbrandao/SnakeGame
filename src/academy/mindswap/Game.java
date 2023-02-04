@@ -25,7 +25,7 @@ public class Game {
 
     public void start() throws InterruptedException {
 
-         generateFruit();
+        generateFruit();
 
         while (snake.isAlive()) {
             Thread.sleep(delay);
@@ -34,16 +34,11 @@ public class Game {
             checkCollisions();
             Field.drawSnake(snake);
         }
-        gameOver();
-    }
-
-    private void gameOver() {
-        // TODO: 04/02/23  
+        Field.gameOver();
     }
 
     private void generateFruit() {
         //RANDOM DE 1 ATÉ À WIDTH e HEIGHT DA FIELD
-        Random random = new Random();
         int randomX = (int) (Math.random() * ((Field.getHeight() -2) - 2) + 1) + 2;
         int randomY = (int) (Math.random() * ((Field.getWidth() -2) - 2) + 1) + 2;
         //int randomX = 23;
@@ -86,26 +81,19 @@ public class Game {
         snake.move();
     }
 
-    private boolean checkCollisions() {
+    private void checkCollisions() {
 
         //VERIFICA SE A HEAD DA SNAKE BATEU EM ALGUMA PAREDE
-       if (snake.getHead().getCol() == 0) snake.die();
-       if (snake.getHead().getRow() == 0) snake.die();
-       if (snake.getHead().getRow() == Field.getHeight()) snake.die();
-       if (snake.getHead().getCol() == Field.getWidth()) snake.die();
+        if (snake.getHead().getCol() == 0) snake.die();
+        if (snake.getHead().getRow() == 0) snake.die();
+        if (snake.getHead().getRow() == Field.getHeight()) snake.die();
+        if (snake.getHead().getCol() == Field.getWidth()) snake.die();
 
         //VERIFICA SE A HEAD DA SNAKE TEM A MESMA POSIÇÃO DA FRUTA
         if(snake.getHead().equals(fruit.getPosition())){
             snake.increaseSize();
             generateFruit();
         }
-
-        /*for (Object position: snake.getFullSnake()){
-            if(fruit.getPosition().equals(position)){
-                snake.die();
-                return;
-            }
-        }*/
 
         //VERIFICA SE A SNAKE BATEU NELA PRÓPRIA
         for (int i = 3; i < snake.getSnakeSize(); i++) {
@@ -114,10 +102,6 @@ public class Game {
                 break;
             }
         }
-
-        //System.out.println(Field.getWidth());
-        //System.out.println(Field.getHeight());
         //System.out.println(snake.getHead().getCol() + " " + snake.getHead().getRow() + " " + fruit.getPosition().getCol() + " " + fruit.getPosition().getRow());
-        return snake.isAlive();
     }
 }
