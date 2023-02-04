@@ -29,6 +29,7 @@ public class Snake {
             case LEFT -> getFullSnake().add(getSnakeSize(), new Position(getFullSnake().getLast().getRow()+1, getFullSnake().getLast().getCol()));
             case RIGHT -> getFullSnake().add(getSnakeSize(), new Position(getFullSnake().getLast().getRow()-1, getFullSnake().getLast().getCol()));
         }
+        System.out.println(getSnakeSize());
     }
 
     public void move(Direction direction) {

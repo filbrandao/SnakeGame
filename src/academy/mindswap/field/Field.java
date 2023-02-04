@@ -89,7 +89,8 @@ public final class Field {
     }
 
     public static void drawFruit(Fruit fruit) {
-        screen.putString(fruit.getPosition().getCol(), fruit.getPosition().getRow(), FRUIT_STRING, Terminal.Color.MAGENTA, null);
+        screen.putString(fruit.getPosition().getCol(), fruit.getPosition().getRow(), FRUIT_STRING, Terminal.Color.YELLOW, null);
+        System.out.println(fruit.getPosition().getCol() + " " + fruit.getPosition().getRow());
     }
 
     public static int getWidth() {

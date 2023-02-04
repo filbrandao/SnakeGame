@@ -36,17 +36,20 @@ public class Game {
 
     private void generateFruit() {
         //RANDOM DE 1 ATÉ À WIDTH e HEIGHT DA FIELD
-        int randomX = (int) (Math.random() * Field.getWidth()) + 1;
-        int randomY = (int) (Math.random() * Field.getHeight()) + 1;
+        //int randomX = (int) (Math.random() * Field.getWidth()) + 1;
+        //int randomY = (int) (Math.random() * Field.getHeight()) + 1;
+        int randomX = 10;
+        int randomY = 10;
 
         //TEM DE SER UMA POSIÇÃO DIFERENTE DE TODO O CORPO DA SNAKE
-        for (int i = 0; i < snake.getSnakeSize(); i++) {
+       /* for (int i = 0; i < snake.getSnakeSize(); i++) {
             if (randomX == snake.getFullSnake().get(i).getCol() && randomY == snake.getFullSnake().get(i).getRow()) {
                 generateFruit();
                 return;
             }
-        }
+        }*/
         fruit = new Fruit(new Position(randomX, randomY));
+        Field.drawFruit(fruit);
     }
 
     private void moveSnake() {
@@ -78,14 +81,15 @@ public class Game {
     private void checkCollisions() {
 
         //VERIFICA SE A HEAD DA SNAKE BATEU EM ALGUMA PAREDE
-        if(snake.getHead().getCol() == 0 || snake.getHead().getRow() == 0 || snake.getHead().getRow() == Field.getWidth() || snake.getHead().getCol() == Field.getHeight()){
+       /* if(snake.getHead().getCol() == 0 || snake.getHead().getRow() == 0 || snake.getHead().getRow() == Field.getWidth() || snake.getHead().getCol() == Field.getHeight()){
             snake.die();
-        }
+        }*/
 
         //VERIFICA SE A HEAD DA SNAKE TEM A MESMA POSIÇÃO DA FRUTA
-        if(snake.getHead() == fruit.getPosition()){
+        if(snake.getHead().equals(fruit.getPosition())){
             snake.increaseSize();
             generateFruit();
+
         }
 
         /*for (Object position: snake.getFullSnake()){
@@ -104,5 +108,6 @@ public class Game {
             //}
             index++;
         //}
+        //System.out.println(snake.getHead().getCol() + " " + snake.getHead().getRow() + " " + fruit.getPosition().getCol() + " " + fruit.getPosition().getRow());
     }
 }
