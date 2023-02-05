@@ -483,6 +483,7 @@ public final class Field {
                 if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
                     screen.putString(j, gameOverY, String.valueOf(gameOver.charAt(index)), Terminal.Color.RED, null);
                 }
+
                 index++;
                 screen.refresh();
             }
