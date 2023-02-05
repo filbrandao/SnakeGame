@@ -1,21 +1,19 @@
 package academy.mindswap;
 
 import academy.mindswap.field.Field;
+import academy.mindswap.field.Sound;
 import academy.mindswap.gameobjects.fruit.Fruit;
 import academy.mindswap.gameobjects.snake.Direction;
 import academy.mindswap.gameobjects.snake.Snake;
 import com.googlecode.lanterna.input.Key;
 import academy.mindswap.field.Position;
 
-import java.util.Iterator;
-import java.util.Random;
-
-
 public class Game {
 
     private final Snake snake;
     private Fruit fruit;
     private final int delay;
+    Sound sound = new Sound();
 
     public Game(int cols, int rows, int delay) {
         Field.init(cols, rows);
@@ -26,6 +24,7 @@ public class Game {
     public void start() throws InterruptedException {
 
         generateFruit();
+        sound.getSoundLoop();
 
         while (snake.isAlive()) {
             Thread.sleep(delay);
@@ -34,7 +33,15 @@ public class Game {
             checkCollisions();
             Field.drawSnake(snake);
         }
+        try {
+            int waitTime = 1;
+            Thread.sleep(waitTime * 700);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        sound.getSoundLoopVar().stop();
         Field.gameOver();
+        sound.getSoundClip("resources/soundEffects/astronaut-says-game-over-73039.wav");
     }
 
     private void generateFruit() {
@@ -92,6 +99,7 @@ public class Game {
         //VERIFICA SE A HEAD DA SNAKE TEM A MESMA POSIÇÃO DA FRUTA
         if(snake.getHead().equals(fruit.getPosition())){
             snake.increaseSize();
+            sound.getSoundClip("resources/soundEffects/mixkit-retro-game-notification-212.wav");
             Field.setFruitCatched(1);
             generateFruit();
         }
