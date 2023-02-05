@@ -126,6 +126,7 @@ public final class Field {
 
     public static void gameOver() {
 
+
         /// G ///
         for(int i = 23; i < 29; i++){
             screen.putString(i, 8, GAME_OVER_STRING, Terminal.Color.RED, null);
@@ -455,6 +456,37 @@ public final class Field {
             screen.putString(50, j, FRUIT_STRING, Terminal.Color.RED, null);
         }*/
         screen.refresh();
+    }
+
+    public static void gameOverTest() {
+
+        String gameOver =
+                "██████╗  █████╗ ███╗   ███╗███████╗\n" +
+                "██╔════╝ ██╔══██╗████╗ ████║██╔════╝\n" +
+                "██║  ███╗███████║██╔████╔██║█████╗\n" +
+                "██║   ██║██╔══██║██║╚██╔╝██║██╔══╝\n" +
+                "╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗\n" +
+                " ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝\n" +
+                " ██████╗ ██╗   ██╗███████╗██████╗\n" +
+                "██╔═══██╗██║   ██║██╔════╝██╔══██╗\n" +
+                "██║   ██║██║   ██║█████╗  ██████╔╝\n" +
+                "██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" +
+                "╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" +
+                " ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝";
+
+        int index = 0;
+        int gameOverY = 10;
+        int numberOfLines = 12;
+        for (int i = 22; i < 22 + gameOver.length(); i++) {
+
+            for (int j = 10; j < numberOfLines; j++) {
+                if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
+                    screen.putString(j, gameOverY, String.valueOf(gameOver.charAt(index)), Terminal.Color.RED, null);
+                }
+                index++;
+                screen.refresh();
+            }
+        }
     }
 
     public static void setFruitCatched(int fruitCatched) {

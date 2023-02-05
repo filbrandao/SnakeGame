@@ -40,8 +40,9 @@ public class Game {
             ex.printStackTrace();
         }
         sound.getSoundLoopVar().stop();
-        Field.gameOver();
-        sound.getSoundClip("resources/soundEffects/astronaut-says-game-over-73039.wav");
+        //Field.gameOver();
+        Field.gameOverTest();
+       // sound.getSoundClip("resources/soundEffects/astronaut-says-game-over-73039.wav");
     }
 
     private void generateFruit() {
