@@ -8,6 +8,8 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.ScreenWriter;
 import com.googlecode.lanterna.terminal.Terminal;
 
+import java.awt.*;
+
 public final class Field {
 
     private static final String BORDER_STRING = "▒";
@@ -125,7 +127,6 @@ public final class Field {
     }
 
     public static void gameOver() {
-
 
         /// G ///
         for(int i = 23; i < 29; i++){
@@ -459,7 +460,7 @@ public final class Field {
     }
 
     public static void gameOverTest() {
-
+        boolean firstTime = true;
         String gameOver =
                 "██████╗  █████╗  ███╗   ███╗███████╗\n" +
                 "██╔════╝ ██╔══██╗████╗ ████║██╔════╝\n" +
@@ -473,22 +474,87 @@ public final class Field {
                 "██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" +
                 "╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" +
                 " ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝";
+        while (true) {
+           if (firstTime) {
+               {
+                   int index = 0;
+                   int gameOverY = 9;
 
-        int index = 0;
-        int gameOverY = 10;
-        for (int i = 22; i < 22 + gameOver.length(); i++) {
-            if (index >= gameOver.length()) {
-                break;
+                   for (int i = 22; i < 22 + gameOver.length(); i++) {
+                       if (index >= gameOver.length()) {
+                           break;
+                       }
+
+                       if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
+                           try {
+                               int waitTime = 1;
+                               Thread.sleep(waitTime * 1);
+                           } catch (InterruptedException ex) {
+                               ex.printStackTrace();
+                           }
+                           screen.putString(i, gameOverY, String.valueOf(gameOver.charAt(index)), Terminal.Color.RED, null);
+                       } else {
+                           gameOverY++;
+                           i = 21;
+                       }
+
+                       index++;
+                       screen.refresh();
+                   }
+               }
+           }
+            try {
+                int waitTime = 1;
+                Thread.sleep(waitTime * 200);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }
-            if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
-                screen.putString(i, gameOverY , String.valueOf(gameOver.charAt(index)), Terminal.Color.RED, null);
-            } else {
-                gameOverY++;
-                i = 21;
+            {
+                int index = 0;
+                int gameOverY = 9;
+                for (int i = 22; i < 22 + gameOver.length(); i++) {
+                    if (index >= gameOver.length()) {
+                        break;
+                    }
+                    if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
+                        screen.putString(i, gameOverY, String.valueOf(gameOver.charAt(index)), Terminal.Color.GREEN, null);
+                    } else {
+                        gameOverY++;
+                        i = 21;
+                    }
+                    index++;
+                    screen.refresh();
+                }
             }
-            index++;
-            screen.refresh();
+            try {
+                int waitTime = 1;
+                Thread.sleep(waitTime * 200);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            {
+                int index = 0;
+                int gameOverY = 9;
+                for (int i = 22; i < 22 + gameOver.length(); i++) {
+                    if (index >= gameOver.length()) {
+                        break;
+                    }
+
+                    if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
+                        screen.putString(i, gameOverY, String.valueOf(gameOver.charAt(index)), Terminal.Color.RED, null);
+                    } else {
+                        gameOverY++;
+                        i = 21;
+                    }
+
+                    index++;
+                    screen.refresh();
+                }
+            }
+            firstTime = false;
+
         }
+
     }
 
     public static void setFruitCatched(int fruitCatched) {
