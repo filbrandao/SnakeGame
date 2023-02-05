@@ -62,7 +62,7 @@ public class Snake {
 
     public void die() {
         Sound sound = new Sound();
-        //sound.getSoundClip("resources/soundEffects/pixel-death-6682.wav");
+        sound.getSoundClip("resources/soundEffects/pixel-death-6682.wav");
         this.alive = false;
     }
 

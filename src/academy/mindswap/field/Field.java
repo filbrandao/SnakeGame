@@ -461,7 +461,7 @@ public final class Field {
     public static void gameOverTest() {
 
         String gameOver =
-                "██████╗  █████╗ ███╗   ███╗███████╗\n" +
+                "██████╗  █████╗  ███╗   ███╗███████╗\n" +
                 "██╔════╝ ██╔══██╗████╗ ████║██╔════╝\n" +
                 "██║  ███╗███████║██╔████╔██║█████╗\n" +
                 "██║   ██║██╔══██║██║╚██╔╝██║██╔══╝\n" +
@@ -476,17 +476,18 @@ public final class Field {
 
         int index = 0;
         int gameOverY = 10;
-        int numberOfLines = 12;
         for (int i = 22; i < 22 + gameOver.length(); i++) {
-
-            for (int j = 10; j < numberOfLines; j++) {
-                if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
-                    screen.putString(j, gameOverY, String.valueOf(gameOver.charAt(index)), Terminal.Color.RED, null);
-                }
-
-                index++;
-                screen.refresh();
+            if (index >= gameOver.length()) {
+                break;
             }
+            if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
+                screen.putString(i, gameOverY , String.valueOf(gameOver.charAt(index)), Terminal.Color.RED, null);
+            } else {
+                gameOverY++;
+                i = 21;
+            }
+            index++;
+            screen.refresh();
         }
     }
 

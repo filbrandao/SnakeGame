@@ -42,7 +42,7 @@ public class Game {
         sound.getSoundLoopVar().stop();
         //Field.gameOver();
         Field.gameOverTest();
-       // sound.getSoundClip("resources/soundEffects/astronaut-says-game-over-73039.wav");
+        sound.getSoundClip("resources/soundEffects/astronaut-says-game-over-73039.wav");
     }
 
     private void generateFruit() {
