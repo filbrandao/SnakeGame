@@ -92,6 +92,7 @@ public class Game {
         //VERIFICA SE A HEAD DA SNAKE TEM A MESMA POSIÇÃO DA FRUTA
         if(snake.getHead().equals(fruit.getPosition())){
             snake.increaseSize();
+            Field.setFruitCatched(1);
             generateFruit();
         }
 
