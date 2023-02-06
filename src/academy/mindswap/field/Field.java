@@ -14,7 +14,7 @@ public final class Field {
     private static final String BORDER_STRING = "▒";
     private static final String SNAKE_BODY_STRING = "#";
     private static final String SNAKE_HEAD_STRING = "0";
-    private static final String FRUIT_STRING = "@";
+    private static final String FRUIT_STRING = "Ȱ";
     private static final String SNAKE_TAIL_STRING = ">";
     private static final String SNAKE_SCORE = "SCORE: ";
     private static final String GAME_OVER_STRING = "▒";
