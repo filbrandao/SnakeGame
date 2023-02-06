@@ -34,6 +34,7 @@ public class Game {
             moveSnake();
             checkCollisions();
             Field.drawSnake(snake);
+            if (!sound.getSoundLoopVar().isRunning()) sound.getSoundLoop();
         }
         try {
             int waitTime = 1;

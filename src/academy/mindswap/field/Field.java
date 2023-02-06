@@ -459,6 +459,7 @@ public final class Field {
     }
 
     public static void gameOverScreenBeta() {
+
         Sound sound = new Sound();
         boolean firstTime = true;
         String gameOver =
@@ -476,26 +477,16 @@ public final class Field {
                 " ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝";
         sound.getSoundClip("resources/soundEffects/astronaut-says-game-over-73039.wav");
         while (true) {
-           if (firstTime) {
-               int index = 0;
-               int gameOverY = 9;
-
-               for (int i = 22; i < 22 + gameOver.length(); i++) {
-                   if (index >= gameOver.length()) {
-                       break;
-                   }
-
-                   if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
-                       waitingTime(1);
-                       screen.putString(i, gameOverY, String.valueOf(gameOver.charAt(index)), Terminal.Color.RED, null);
-                   } else {
-                       gameOverY++;
-                       i = 21;
-                   }
-
-                       index++;
-                       screen.refresh();
+            Field.drawWalls();
+            if (firstTime) {
+               String[] gameOverArray = gameOver.split("\n");
+               int yPosition = 9;
+               for (String gameLine: gameOverArray) {
+                   waitingTime(1);
+                   screen.putString(22, yPosition , gameLine, Terminal.Color.RED, null);
+                   yPosition++;
                }
+               screen.refresh();
            }
             waitingTime(200);
             normalWriting(gameOver, Terminal.Color.GREEN);
@@ -508,21 +499,14 @@ public final class Field {
     }
 
     private static void normalWriting(String gameOver, Terminal.Color color) {
-        int index = 0;
-        int gameOverY = 9;
-        for (int i = 22; i < 22 + gameOver.length(); i++) {
-            if (index >= gameOver.length()) {
-                break;
-            }
-            if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
-                screen.putString(i, gameOverY, String.valueOf(gameOver.charAt(index)), color, null);
-            } else {
-                gameOverY++;
-                i = 21;
-            }
-            index++;
-            screen.refresh();
+        String[] gameOverArray = gameOver.split("\n");
+
+        int yPosition = 9;
+        for (String gameLine: gameOverArray) {
+            screen.putString(22, yPosition , gameLine, Terminal.Color.RED, null);
+            yPosition++;
         }
+        screen.refresh();
     }
     private static void waitingTime(int x) {
         try {

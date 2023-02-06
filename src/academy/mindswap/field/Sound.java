@@ -32,8 +32,8 @@ public class Sound {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             throw new RuntimeException(e);
         }
-        soundLoop.setFramePosition(0);
-        soundLoop.start();
+            soundLoop.setFramePosition(0);
+            soundLoop.start();
 
     }
 
