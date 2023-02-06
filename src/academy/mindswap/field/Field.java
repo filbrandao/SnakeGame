@@ -112,8 +112,8 @@ public final class Field {
         return screen.readInput();
     }
 
-    public static void drawFruit(Fruit fruit) {
-        screen.putString(fruit.getPosition().getCol(), fruit.getPosition().getRow(), FRUIT_STRING, Terminal.Color.YELLOW, null);
+    public static void drawFruit(Fruit fruit, Terminal.Color color) {
+        screen.putString(fruit.getPosition().getCol(), fruit.getPosition().getRow(), FRUIT_STRING, color, null);
         System.out.println(fruit.getPosition().getCol() + " " + fruit.getPosition().getRow());
     }
 
@@ -507,7 +507,7 @@ public final class Field {
 
     }
 
-    private static void normalWriting(String gameOver, Terminal.Color green) {
+    private static void normalWriting(String gameOver, Terminal.Color color) {
         int index = 0;
         int gameOverY = 9;
         for (int i = 22; i < 22 + gameOver.length(); i++) {
@@ -515,7 +515,7 @@ public final class Field {
                 break;
             }
             if (!String.valueOf(gameOver.charAt(index)).equals("\n")) {
-                screen.putString(i, gameOverY, String.valueOf(gameOver.charAt(index)), green, null);
+                screen.putString(i, gameOverY, String.valueOf(gameOver.charAt(index)), color, null);
             } else {
                 gameOverY++;
                 i = 21;
@@ -524,7 +524,6 @@ public final class Field {
             screen.refresh();
         }
     }
-
     private static void waitingTime(int x) {
         try {
             int waitTime = 1;

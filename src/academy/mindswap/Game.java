@@ -7,6 +7,7 @@ import academy.mindswap.gameobjects.snake.Direction;
 import academy.mindswap.gameobjects.snake.Snake;
 import com.googlecode.lanterna.input.Key;
 import academy.mindswap.field.Position;
+import com.googlecode.lanterna.terminal.Terminal;
 
 public class Game {
 
@@ -14,6 +15,7 @@ public class Game {
     private Fruit fruit;
     private final int delay;
     Sound sound = new Sound();
+
 
     public Game(int cols, int rows, int delay) {
         Field.init(cols, rows);
@@ -59,8 +61,29 @@ public class Game {
                 return;
             }
         }
-        fruit = new Fruit(new Position(randomX, randomY));
-        Field.drawFruit(fruit);
+       switch ((int) (Math.random() * (10 - 1 + 1) + 1)) {
+           case 1, 2, 3, 4, 5:
+               fruit = new Fruit(new Position(randomX, randomY));
+               fruit.setFruitPoints(1);
+               Field.drawFruit(fruit, Terminal.Color.YELLOW);
+               break;
+           case 6, 7:
+               fruit = new Fruit(new Position(randomX, randomY));
+               fruit.setFruitPoints(2);
+               Field.drawFruit(fruit, Terminal.Color.BLUE);
+               break;
+           case 8, 9:
+               fruit = new Fruit(new Position(randomX, randomY));
+               fruit.setFruitPoints(3);
+               Field.drawFruit(fruit, Terminal.Color.RED);
+               break;
+           case 10:
+               fruit = new Fruit(new Position(randomX, randomY));
+               fruit.setFruitPoints(5);
+               Field.drawFruit(fruit, Terminal.Color.CYAN);
+               break;
+        }
+
     }
 
     private void moveSnake() {
@@ -101,7 +124,7 @@ public class Game {
         if(snake.getHead().equals(fruit.getPosition())){
             snake.increaseSize();
             sound.getSoundClip("resources/soundEffects/mixkit-retro-game-notification-212.wav");
-            Field.setFruitCatched(1);
+            Field.setFruitCatched(fruit.getFruitPoints());
             generateFruit();
         }
 
