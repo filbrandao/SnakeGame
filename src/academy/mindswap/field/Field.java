@@ -1,5 +1,6 @@
 package academy.mindswap.field;
 
+import academy.mindswap.SoundFiles;
 import academy.mindswap.gameobjects.fruit.Fruit;
 import academy.mindswap.gameobjects.snake.Snake;
 import com.googlecode.lanterna.TerminalFacade;
@@ -475,7 +476,8 @@ public final class Field {
                 "██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" +
                 "╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" +
                 " ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝";
-        sound.getSoundClip("resources/soundEffects/astronaut-says-game-over-73039.wav");
+        //sound.getSoundClip("resources/soundEffects/astronaut-says-game-over-73039.wav");
+        sound.playSound(SoundFiles.GAME_OVER_STRING);
         while (true) {
             Field.drawWalls();
             if (firstTime) {

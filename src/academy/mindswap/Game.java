@@ -9,6 +9,8 @@ import com.googlecode.lanterna.input.Key;
 import academy.mindswap.field.Position;
 import com.googlecode.lanterna.terminal.Terminal;
 
+
+
 public class Game {
 
     private final Snake snake;
@@ -26,7 +28,9 @@ public class Game {
     public void start() throws InterruptedException {
 
         generateFruit();
-        sound.getSoundLoop();
+        //sound.getSoundLoop();
+        sound.init();
+        sound.playSound(SoundFiles.GAME_LOOP);
 
         while (snake.isAlive()) {
             Thread.sleep(delay);
@@ -34,7 +38,8 @@ public class Game {
             moveSnake();
             checkCollisions();
             Field.drawSnake(snake);
-            if (!sound.getSoundLoopVar().isRunning()) sound.getSoundLoop();
+            //if (!sound.getSoundLoopVar().isRunning()) sound.getSoundLoop();
+
         }
         try {
             int waitTime = 1;
@@ -42,7 +47,7 @@ public class Game {
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        sound.getSoundLoopVar().stop();
+       // sound.getSoundLoopVar().stop();
         //Field.gameOverScreenAlpha();
         Field.gameOverScreenBeta();
 
@@ -52,8 +57,7 @@ public class Game {
         //RANDOM DE 1 ATÉ À WIDTH e HEIGHT DA FIELD
         int randomX = (int) (Math.random() * ((Field.getHeight() -2) - 2) + 1) + 2;
         int randomY = (int) (Math.random() * ((Field.getWidth() -2) - 2) + 1) + 2;
-        //int randomX = 23;
-        //int randomY = 98;
+
 
         //TEM DE SER UMA POSIÇÃO DIFERENTE DE TODO O CORPO DA SNAKE
        for (int i = 0; i < snake.getSnakeSize(); i++) {
@@ -124,7 +128,9 @@ public class Game {
         //VERIFICA SE A HEAD DA SNAKE TEM A MESMA POSIÇÃO DA FRUTA
         if(snake.getHead().equals(fruit.getPosition())){
             snake.increaseSize();
-            sound.getSoundClip("resources/soundEffects/mixkit-retro-game-notification-212.wav");
+           // sound.getSoundClip("resources/soundEffects/mixkit-retro-game-notification-212.wav");
+            sound.init();
+            sound.playSound(SoundFiles.GAME_LOOP);
             Field.setFruitCatched(fruit.getFruitPoints());
             generateFruit();
         }

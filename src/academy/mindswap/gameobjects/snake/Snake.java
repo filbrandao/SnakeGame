@@ -1,5 +1,6 @@
 package academy.mindswap.gameobjects.snake;
 
+import academy.mindswap.SoundFiles;
 import academy.mindswap.field.Position;
 import academy.mindswap.field.Sound;
 
@@ -62,7 +63,8 @@ public class Snake {
 
     public void die() {
         Sound sound = new Sound();
-        sound.getSoundClip("resources/soundEffects/pixel-death-6682.wav");
+        //sound.getSoundClip("/home/filipe/IdeaProjects/SnakeGame/resources/soundEffects/pixel-death-6682.wav");
+        sound.playSound(SoundFiles.GAME_OVER_SOUND);
         this.alive = false;
     }
 
