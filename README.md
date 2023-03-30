@@ -1,6 +1,6 @@
-**Snake Game**
-
 ![](https://i.ibb.co/KbFvPvy/Screenshot-from-2023-02-19-23-05-22.png) 
+
+**Snake Game**
 
 **Rules:**
 
