@@ -22,3 +22,11 @@ We were given the Field class to start, and had to implement all the logic of th
 - Augusto Faria - [@GutoFaria365](https://github.com/GutoFaria365) 
 - Filipa Gonçalves - [@filipagoncalves](https://github.com/filipagoncalves) 
 - FIlipe Brandão - [@filbrandao](https://github.com/filbrandao) 
+
+**MindSwap Bootcamp**
+
+MindSwap is a 5 month bootcamp program created by Mindera (Portugal), a software development company, that aims to provide students with hands-on experience in the field of software development and that focuses on teaching  the fundamentals of software development, including programming languages, web development, and software architecture.
+
+The program is designed for individuals who are looking to switch to a career in software development, as well as for those who want to enhance their existing programming skills.
+
+If you wish to know more about it click [here](https://mindswap.academy/) .
